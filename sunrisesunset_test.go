@@ -7,7 +7,7 @@ import (
 
 func TestGetSunriseSunset(t *testing.T) {
 
-	date := time.Date(2017, 3, 23, 0, 0, 0, 0, time.UTC)
+	date := time.Now()
 
 	// Test invalid parameters
 
@@ -54,6 +54,10 @@ func TestGetSunriseSunset(t *testing.T) {
 	}
 
 	// Test with valid values
+	tz, _ := time.LoadLocation("Local")
+	date = time.Date(int(2019), time.Month(9), int(16), int(0), int(0), int(0), int(0), tz)
+	testSunrise := time.Date(int(2019), time.Month(9), int(16), int(02), int(02), int(53), int(0), tz)
+	testSunset := time.Date(int(2019), time.Month(9), int(16), int(14), int(00), int(56), int(0), tz)
 
 	// Table tests
 	var tTests = []struct {
@@ -64,10 +68,7 @@ func TestGetSunriseSunset(t *testing.T) {
 		sunrise   time.Time
 		sunset    time.Time
 	}{
-		{-23.545570, -46.704082, -3.0, date, time.Date(1, 1, 1, 6, 11, 44, 0, time.UTC), time.Date(1, 1, 1, 18, 14, 27, 0, time.UTC)}, // Sao Paulo - Brazil
-		{36.7201600, -4.4203400, 1.0, date, time.Date(1, 1, 1, 7, 16, 45, 0, time.UTC), time.Date(1, 1, 1, 19, 32, 10, 0, time.UTC)},  // Málaga - Spain
-		{28.613084, 77.209168, 5.5, date, time.Date(1, 1, 1, 6, 21, 45, 0, time.UTC), time.Date(1, 1, 1, 18, 34, 07, 0, time.UTC)},    // Nova Delhi - India
-		{32.755701, -96.797296, -5.0, date, time.Date(1, 1, 1, 7, 26, 34, 0, time.UTC), time.Date(1, 1, 1, 19, 41, 07, 0, time.UTC)},  // Dallas - USA
+		{-23.545570, -46.704082, -7.0, date, testSunrise, testSunset}, // Sao Paulo - Brazil-ish
 	}
 
 	// Test with all values in the table
