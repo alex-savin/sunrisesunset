@@ -1,5 +1,6 @@
 Sunrise Sunset Package
 ==========================
+About the fork: I forked the [kelvins/sunrisesunset](https://github.com/kelvins/sunrisesunset) repo as I wanted the returned times to include full date and timezone, rather than just the time.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](LICENSE)
 [![Build Status](https://travis-ci.org/kelvins/sunrisesunset.svg?branch=master)](https://travis-ci.org/kelvins/sunrisesunset)
@@ -46,7 +47,7 @@ func main() {
       Latitude:  -23.545570,
       Longitude: -46.704082,
       UtcOffset: -3.0,
-      Date:      time.Date(2017, 3, 23, 0, 0, 0, 0, time.UTC),
+      Date:      time.Now(),
     }
 
     // Calculate the sunrise and sunset times
